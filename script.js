@@ -3,97 +3,82 @@
 //with everything listed at the top of the page. I decided to do it this way to logically segment the variables included in the password, questions asked,
 //and the core logic (that generates the password) all seperate. 
 var generateBtn = document.querySelector("#generate");
+//var keys = [[upper,"ABCDEFGHIJKLMNOPQRSTUVWXYZ"], [lower,"abcdefghijklnmopqrstuvwxyz"], [numbers,"0123456789"], [special, "~!@#$%^&*()-_=+"], [length, lengthInteger]];
 
-//everything is declared as global variable at root of script for type saftey so it is clear what datatypes they are supposed to be. 
-var promptQuestions = [ ["lower","confirm","do you want lowercase letters?"],
-["upper","confirm","do you want uppercase letters?"], 
-  ["number","confirm","do you want numbers in your password?"],["special","confirm","do you want special characters in your password?"], 
-  ["length", "prompt", "Password length? Has to be between 8 and 128 characters"]];
+var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lower = "abcdefghijklnmopqrstuvwxyz";
+var numbers = "0123456789";
+var special = "~!@#$%^&*()-_=+";
+var length;
 
-//var userInput = false; //default value
-var password = ""; //default value
-var length = [true, passwordLengthInteger, "length"]; //every password will have a length so boolean of true is passed in instead of userInput.
-var special = [userInput, "~!@#$%^&*()-_=+", "special"]; //third value is the name of the variable
-var lower = [userInput,"abcdefghijklmnopqrstuvwxyz", "lower"]; //third value is name of the valiable 
-var upper = [userInput,"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "upper"]; //third value is name of the variable
-var number = [userInput,"0123456789","number"]; // third value is name of the variable
-var keys = [length,lower,upper,number,special];
+var promptQuestions = [ [lower,"confirm","do you want lowercase letters?"],
+  [upper,"confirm","do you want uppercase letters?"], 
+  [numbers,"confirm","do you want numbers in your password?"],
+  [special,"confirm","do you want special characters in your password?"], 
+  [length, "prompt", "Password length? Has to be between 8 and 128 characters"] ];
+var password = "";
+var key = "";
+var passwordArray = [];
 
-var theManual = [["numOfQues",numOfQues], ["promptQuestions",promptQuestions], ["userInput",userInput], 
-  ["password",password], ["special",special], ["lower",lower], ["number",number], ["keys",number],["theManual","theManual is a nested array"],
-  ["passwordObject","object in the form of an Array"]];
-var passwordObject = [promptQuestions, pwlength, keys, password, theManual];
+function lengthFunc (length, i,question) {
 
-/*this function is added to help diagnose if the password isn't including all the variables/other issues, included incase the dev team whated 
-to change some of the variables but */ 
-function diagnostics() {
-  try { for (var i = 0; i < theManual.length; i++ ) { console.log(theManual[i][0] + "==>"+theManual[i][1]); } 
-    return true;
-  } catch (err) { console.log(err); return false; }
-}
-//recursive function
-function askLength(length, i) {
+  length = prompt(promptQuestions[i][question]);
 
-  length = prompt(promptQuestions[i][2]); // length used in place of keys[i][0]
-  if (length) {
-    askLength(0, i);
+  length = parseInt(length);
+
+  if (Number.isInteger(length))
+  {
+    this.length = length;
+  } else {
+    lengthFunc(length, i,question);
   }
-
-  if (length < 8 || length > 128) {
-    askLength(length,i);
-  }
-  keys[i][1] = length; 
 }
 
 function promptUser() {
-
-  let length;
-
-  if (promptQuestions.length === keys.length) { //if edits to the code are made this will help catch bugs early on, especially usefull if a group is working on the code
-    for (var i = 0; promptQuestions.length; i++) { //goes through all of the questions to ask the user 
-
-      if (promptQuestions[i][1] === "prompt") {
-
-        if (keys[i][2] === promptQuestions[i][0]) { //makes sure the two nested arrays are correctly synced so the keys array doesnt get the wrong information
-          keys[i][0] = confirm(promptQuestions[i][1]);
-        } else { console.log("error: " + keys[i][2] )}
-      } else {
-
-        if (keys[i][2] === promptQuestions[i][0]) { //makes sure the two nested arrays are correctly synced so the keys array doesnt get the wrong information
-          askLength(0,i); //passing a 0 just because the function is expecting a value and will get discarded
-        } else { console.log("error: " + keys[i][2] )}
-      }
-    } 
+  
+  let question = 3;
+  let alertType = 1;
+  
+  for (var i = 0; i < promptQuestions.length; i++) {
     
-    return keys; 
-  } else { console.log("promptQuestions.length !== keys.length")}
+    if (promptQuestions[i][alertType] == "confirm") {
+      
+      if (confirm(promptQuestions[i][question])) {
+        passwordArray.push(promptQuestions[i][value]);
+      } 
+
+    } 
+
+    if (promptQuestions[i][alertType] == "prompt") {
+      lengthFunc(0,i,question); //threw in a 0 just because function expects it the initial zero will be discarded when function is called
+    }
+     
+  }
 }
 
-
 function generatePassword() {
+
   promptUser();
+  var index;
 
+  passwordArray = passwordArray.join("").split("");
 
-  for (var i = 0; i < characterLength; i++) {
-    var index = (Math.floor(Math.random() * userSelection.length));
-    password = password + userSelection[index]
+  for (var i = 0; i < length; i++) {  
+    var index = (Math.floor(Math.random() * passwordArray.length));
+    password = password + passwordArray[index]
   }
-
-  return password
-
+  return password;
 }
 
 // Write password to the #password input
 function writePassword() {
-  
+  password = "";
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
 }
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
