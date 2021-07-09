@@ -3,6 +3,8 @@ Homework Assignment #3 of the UNC coding bootcamp that features password generat
 
 # 03 JavaScript: Password Generator
 
+Deployed link: https://captainquickwit.github.io/UNC-Password_Generator/
+
 ## Your Task
 
 This week’s homework requires you to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
@@ -36,60 +38,9 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
+![Screen Shot 2021-07-09 at 12 59 19 AM](https://user-images.githubusercontent.com/73507926/125025712-299c1600-e051-11eb-90ba-224b685d4547.png)
+![Screen Shot 2021-07-09 at 1 01 30 AM](https://user-images.githubusercontent.com/73507926/125025782-4a646b80-e051-11eb-8a9b-426d1e05297e.png)
 
-## Mock-Up
-
-The following image shows the web application's appearance and functionality:
-
-![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
-
-## Grading Requirements
-
-This homework is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria plus the following:
-
-  * The homework should not produce any errors in the console when you inspect it using Chrome DevTools.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
 
 - - -
 © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
